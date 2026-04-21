@@ -28,9 +28,81 @@
     <main class="map-page">
       <div id="map" aria-label="GPS-pinned photo map"></div>
       <div class="map-bar" aria-label="Map controls">
-        <strong>Peak Wildlife Park Photo Map</strong>
-        <span id="photo-count">Loading photos...</span>
+        <strong>Peak Wildlife Park Ideas Map</strong>
+        <span id="idea-count">Loading ideas...</span>
+        <button id="add-idea" type="button">Add idea</button>
+        <button id="export-ideas" type="button">Export data</button>
         <button id="fit-map" type="button">Fit pins</button>
+      </div>
+
+      <section class="idea-panel" id="idea-panel" hidden aria-label="Idea editor">
+        <form id="idea-form">
+          <div class="panel-heading">
+            <h1 id="panel-title">Add idea</h1>
+            <button class="plain-button" id="close-panel" type="button">Close</button>
+          </div>
+
+          <label>
+            Title
+            <input id="idea-title" name="title" required placeholder="Wayfinding at path split" />
+          </label>
+
+          <label>
+            Category
+            <select id="idea-category" name="category">
+              <option>Signage</option>
+              <option>Guest flow</option>
+              <option>Secondary spend</option>
+              <option>Wet weather</option>
+              <option>Retail</option>
+              <option>Safety</option>
+              <option>Operations</option>
+            </select>
+          </label>
+
+          <label>
+            Photo
+            <select id="idea-photo" name="photoId"></select>
+          </label>
+
+          <img class="photo-preview" id="photo-preview" alt="" />
+
+          <label>
+            Suggestion
+            <textarea
+              id="idea-suggestion"
+              name="suggestion"
+              rows="4"
+              placeholder="What should change here?"
+            ></textarea>
+          </label>
+
+          <label>
+            Pros / positives
+            <textarea
+              id="idea-pros"
+              name="pros"
+              rows="4"
+              placeholder="One benefit per line"
+            ></textarea>
+          </label>
+
+          <div class="panel-actions">
+            <button type="submit">Save pin</button>
+            <button class="plain-button" id="delete-idea" type="button" hidden>Delete</button>
+          </div>
+        </form>
+
+        <div class="export-box" id="export-box" hidden>
+          <h2>Export data</h2>
+          <p>Replace the contents of <code>window.PEAK_IDEAS = [...]</code> in <code>data/ideas.js</code> with this block.</p>
+          <textarea id="export-output" rows="10" readonly></textarea>
+        </div>
+      </section>
+
+      <div class="empty-state" id="empty-state" hidden>
+        <strong>No public idea pins yet.</strong>
+        <span>Open with <code>?edit=1</code>, add pins, then export them into <code>data/ideas.js</code>.</span>
       </div>
     </main>
 
@@ -42,6 +114,7 @@
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     <script src="data/photos.js"></script>
     <script src="data/observations.js"></script>
+    <script src="data/ideas.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

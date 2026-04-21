@@ -54,7 +54,18 @@ node scripts/build-standalone-html.mjs
 
 ## Add observations
 
-Keep manual notes in `data/observations.js` so they do not get overwritten when `data/photos.js` is regenerated.
+The live site is now an ideas/suggestions map. Add public pins in `data/ideas.js`.
+
+Fast workflow:
+
+1. Open `https://magicmanben.github.io/Peak/?edit=1`.
+2. Click `Add idea`.
+3. Click the map where the suggestion belongs.
+4. Choose a photo, add the suggestion text, and add one benefit per line.
+5. Click `Export data`.
+6. Replace the `window.PEAK_IDEAS = [...]` block in `data/ideas.js`, commit, and push.
+
+Keep private/manual photo notes in `data/observations.js` if needed so they do not get overwritten when `data/photos.js` is regenerated.
 
 Example:
 

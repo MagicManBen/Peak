@@ -120,44 +120,51 @@ body {
   padding: 0.45rem 0.85rem;
 }
 
-.photo-pin {
-  position: relative;
-  width: 3.35rem;
+.idea-pin {
+  display: grid;
+  width: 2.65rem;
   height: 3.35rem;
-  overflow: hidden;
+  place-items: center;
   border: 3px solid var(--gold);
   border-radius: 50% 50% 50% 0;
-  background: var(--forest);
-  box-shadow: 0 12px 26px rgba(18, 61, 44, 0.34);
+  background: var(--pin-color, var(--forest));
+  box-shadow: 0 16px 34px rgba(18, 61, 44, 0.4);
+  color: var(--paper);
   transform: rotate(-45deg);
   transition:
     box-shadow 160ms ease,
     transform 160ms ease;
 }
 
-.photo-pin img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: rotate(45deg) scale(1.35);
+.idea-pin span {
+  font-size: 1rem;
+  font-weight: 900;
+  transform: rotate(45deg);
 }
 
-.photo-pin:hover {
-  box-shadow: 0 18px 34px rgba(18, 61, 44, 0.44);
+.idea-pin:hover {
+  box-shadow: 0 20px 44px rgba(18, 61, 44, 0.5);
   transform: rotate(-45deg) translateY(-2px) scale(1.04);
 }
 
-.cluster-pin {
+.source-photo {
   display: grid;
-  width: 3.35rem;
-  height: 3.35rem;
+  width: 1.75rem;
+  height: 1.75rem;
   place-items: center;
-  border: 3px solid var(--gold);
+  overflow: hidden;
+  border: 2px solid rgba(255, 250, 240, 0.9);
   border-radius: 50%;
-  background: var(--forest);
-  box-shadow: 0 16px 34px rgba(18, 61, 44, 0.34);
-  color: var(--paper);
-  font-weight: 800;
+  background: var(--paper);
+  box-shadow: 0 6px 18px rgba(18, 61, 44, 0.25);
+  cursor: pointer;
+  padding: 0;
+}
+
+.source-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .leaflet-popup-content-wrapper {
@@ -172,31 +179,231 @@ body {
   margin: 0;
 }
 
-.popup-card img {
+.idea-popup img {
   display: block;
   width: 100%;
   max-height: min(52vh, 24rem);
   object-fit: cover;
 }
 
-.popup-card__body {
+.idea-popup__body {
   padding: 0.9rem 1rem 1rem;
 }
 
-.popup-card h2 {
-  margin: 0 0 0.3rem;
-  font-size: 1.05rem;
+.idea-popup h2 {
+  margin: 0 0 0.45rem;
+  font-size: 1.18rem;
+  line-height: 1.12;
 }
 
-.popup-card p {
+.idea-popup p {
   margin: 0 0 0.7rem;
   color: rgba(22, 32, 22, 0.68);
   line-height: 1.4;
 }
 
-.popup-card a {
+.idea-category {
+  color: var(--forest) !important;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.photo-meta {
+  font-size: 0.84rem;
+}
+
+.idea-popup ul {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0.85rem 0;
+  padding: 0;
+}
+
+.idea-popup li {
+  display: grid;
+  grid-template-columns: 1.2rem minmax(0, 1fr);
+  gap: 0.35rem;
+  list-style: none;
+  line-height: 1.35;
+}
+
+.idea-popup li::before {
+  content: "✓";
+  display: grid;
+  width: 1.15rem;
+  height: 1.15rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--paper);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.popup-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.idea-popup a,
+.popup-edit {
+  border: 0;
+  background: transparent;
   color: var(--forest);
+  cursor: pointer;
+  font: inherit;
   font-weight: 800;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.idea-panel {
+  position: absolute;
+  z-index: 700;
+  top: 5rem;
+  right: 1rem;
+  display: grid;
+  width: min(26rem, calc(100vw - 2rem));
+  max-height: calc(100svh - 6rem);
+  gap: 1rem;
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 1.25rem;
+  background: rgba(255, 250, 240, 0.96);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  backdrop-filter: blur(14px);
+}
+
+.idea-panel[hidden],
+.empty-state[hidden] {
+  display: none;
+}
+
+.panel-heading,
+.panel-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.idea-panel h1,
+.idea-panel h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.idea-panel form,
+.idea-panel label {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.idea-panel form {
+  gap: 0.9rem;
+}
+
+.idea-panel label {
+  color: rgba(22, 32, 22, 0.68);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.idea-panel input,
+.idea-panel select,
+.idea-panel textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  background: #ffffff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  outline: none;
+  padding: 0.72rem 0.8rem;
+  text-transform: none;
+}
+
+.idea-panel textarea {
+  resize: vertical;
+}
+
+.photo-preview {
+  width: 100%;
+  max-height: 12rem;
+  border-radius: 0.9rem;
+  object-fit: cover;
+}
+
+.panel-actions button,
+.export-box button {
+  min-height: 2.4rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--forest);
+  color: var(--paper);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: 0.55rem 0.9rem;
+}
+
+.plain-button,
+.panel-actions .plain-button {
+  background: transparent;
+  color: var(--forest);
+}
+
+.export-box {
+  display: grid;
+  gap: 0.65rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+.export-box p {
+  margin: 0;
+  color: rgba(22, 32, 22, 0.68);
+  line-height: 1.45;
+}
+
+.export-box textarea {
+  min-height: 11rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+}
+
+.empty-state {
+  position: absolute;
+  z-index: 500;
+  left: 1rem;
+  bottom: 1rem;
+  display: grid;
+  max-width: min(28rem, calc(100vw - 2rem));
+  gap: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 1rem;
+  background: rgba(255, 250, 240, 0.92);
+  box-shadow: var(--shadow);
+  padding: 0.85rem 1rem;
+  backdrop-filter: blur(14px);
+}
+
+.empty-state span {
+  color: rgba(22, 32, 22, 0.68);
+  line-height: 1.4;
+}
+
+.is-placing {
+  cursor: crosshair;
 }
 
 @media (max-width: 640px) {
@@ -210,5 +417,14 @@ body {
   .map-bar strong,
   .map-bar span {
     white-space: normal;
+  }
+
+  .idea-panel {
+    top: auto;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    width: auto;
+    max-height: 72svh;
   }
 }
