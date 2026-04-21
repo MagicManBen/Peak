@@ -3,16 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Peak Wildlife Park Operations Field Map</title>
+    <title>Peak Wildlife Park Photo Map</title>
     <meta
       name="description"
-      content="A photo-led operations observation map for Peak Wildlife Park, using GPS-pinned site walk photography."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      content="GPS-pinned photo map from a Peak Wildlife Park site walk."
     />
     <link
       rel="stylesheet"
@@ -31,118 +25,14 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="hero">
-      <div class="hero__shade"></div>
-      <div class="hero__content">
-        <p class="eyebrow">Operations interview field evidence</p>
-        <h1>Peak Wildlife Park photo map</h1>
-        <p class="hero__text">
-          A location-pinned walk of the park, built for turning site observations into a clear
-          operating plan.
-        </p>
-        <div class="hero__actions">
-          <a href="#map-workspace" class="button">Open map</a>
-          <a href="#report-notes" class="button button--ghost">View report prompts</a>
-        </div>
+    <main class="map-page">
+      <div id="map" aria-label="GPS-pinned photo map"></div>
+      <div class="map-bar" aria-label="Map controls">
+        <strong>Peak Wildlife Park Photo Map</strong>
+        <span id="photo-count">Loading photos...</span>
+        <button id="fit-map" type="button">Fit pins</button>
       </div>
-      <dl class="hero__stats" aria-label="Map statistics">
-        <div>
-          <dt id="stat-photo-count">0</dt>
-          <dd>GPS photos</dd>
-        </div>
-        <div>
-          <dt id="stat-time-range">-</dt>
-          <dd>walk window</dd>
-        </div>
-        <div>
-          <dt id="stat-source-count">0</dt>
-          <dd>source files</dd>
-        </div>
-      </dl>
-    </header>
-
-    <main>
-      <section class="workspace" id="map-workspace" aria-label="Interactive operations map">
-        <aside class="control-panel" aria-label="Photo controls">
-          <div>
-            <p class="section-kicker">Field controls</p>
-            <h2>Evidence, pinned by GPS</h2>
-            <p>
-              Click a thumbnail pin to inspect the photo, open its Google Maps location, and add
-              notes later in <code>data/observations.js</code>.
-            </p>
-          </div>
-
-          <label class="search-box">
-            <span>Search photos</span>
-            <input id="photo-search" type="search" placeholder="Filename, note, category..." />
-          </label>
-
-          <div class="lens-list" id="lens-list" aria-label="Operations lenses"></div>
-
-          <div class="active-lens" id="active-lens">
-            Select a focus lens to frame the walk.
-          </div>
-
-          <div class="photo-list" id="photo-list" aria-label="Pinned photo list"></div>
-        </aside>
-
-        <div class="map-shell">
-          <div id="map" aria-label="Map of GPS-pinned photos"></div>
-          <div class="map-toolbar">
-            <button id="fit-map" type="button">Fit walk</button>
-            <button id="toggle-route" type="button" aria-pressed="true">Hide route</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="report" id="report-notes">
-        <div class="report__intro">
-          <p class="section-kicker">Report structure</p>
-          <h2>Observation themes to build from the pins</h2>
-          <p>
-            Use the map as evidence, then write each recommendation against a specific photographed
-            location. This keeps the interview report practical rather than generic.
-          </p>
-        </div>
-        <div class="report-grid">
-          <article>
-            <span>01</span>
-            <h3>Arrival and first decisions</h3>
-            <p>Parking, entrance confidence, ticketing flow, first signage, toilets, and welcome.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Wayfinding and interpretation</h3>
-            <p>Primary routes, secondary signs, animal talks, dwell points, and reassurance signs.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Secondary spend</h3>
-            <p>Retail prompts, catering capture, upgrades, queue-line offers, and exit conversion.</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>Wet weather resilience</h3>
-            <p>Covered routing, shelter, drainage, muddy surfaces, indoor dwell, and spend protection.</p>
-          </article>
-          <article>
-            <span>05</span>
-            <h3>Operational standards</h3>
-            <p>Cleanliness, safety, staff visibility, queue pressure, maintenance, and daily checks.</p>
-          </article>
-          <article>
-            <span>06</span>
-            <h3>Commercial quick wins</h3>
-            <p>Low-cost changes that improve guest confidence, team efficiency, and revenue capture.</p>
-          </article>
-        </div>
-      </section>
     </main>
-
-    <footer>
-      <p>Generated from local photo GPS metadata. Basemap provided by OpenStreetMap and Esri via Leaflet.</p>
-    </footer>
 
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
