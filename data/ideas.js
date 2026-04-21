@@ -1,28 +1,27 @@
 window.PEAK_IDEAS = [
-  /*
-    Add public-facing suggestion pins here.
-
-    Fastest workflow:
-    1. Open https://magicmanben.github.io/Peak/?edit=1
-    2. Click "Add idea"
-    3. Click the map where the idea belongs
-    4. Fill in the form and use "Export data"
-    5. Replace this array with the exported block, commit, and push
-
-    Example:
-    {
-      id: "path-split-wayfinding",
-      title: "Wayfinding at path split",
-      category: "Signage",
-      lat: 53.06123,
-      lng: -1.92345,
-      photoId: "IMG_5096",
-      suggestion: "Add a clearer decision sign before guests reach the split.",
-      pros: [
-        "Reduces hesitation at a key junction",
-        "Keeps guests moving towards priority areas",
-        "Low-cost operational improvement"
-      ]
-    }
-  */
+  {
+    "id": "sign-goes-here-mo7zkfli",
+    "title": "Sign goes here",
+    "category": "Signage",
+    "lat": 53.0624029,
+    "lng": -1.92339885,
+    "photoId": "IMG_5082",
+    "suggestion": "Find the way",
+    "pros": [
+      "Good Signs",
+      "Easy Paths"
+    ]
+  },
+  {
+    "id": "bin-mo7zvbbd",
+    "title": "Bin",
+    "category": "Operations",
+    "lat": 53.06225936,
+    "lng": -1.92303692,
+    "photoId": "IMG_5159",
+    "suggestion": "bin here",
+    "pros": [
+      "tidy"
+    ]
+  }
 ];
