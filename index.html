@@ -61,8 +61,29 @@
           </label>
 
           <label>
-            Photo
+            Pin icon
+            <select id="idea-icon" name="icon">
+              <option value="sign">Sign / wayfinding</option>
+              <option value="bin">Bin / waste</option>
+              <option value="kiosk">Kiosk / sales point</option>
+              <option value="shop">Retail / shop</option>
+              <option value="food">Food / drink</option>
+              <option value="shelter">Shelter / wet weather</option>
+              <option value="path">Path / guest flow</option>
+              <option value="warning">Safety / warning</option>
+              <option value="staff">Staff / operations</option>
+              <option value="idea">General idea</option>
+            </select>
+          </label>
+
+          <label>
+            Existing walkthrough photo
             <select id="idea-photo" name="photoId"></select>
+          </label>
+
+          <label>
+            Upload a pin photo from this Mac
+            <input id="idea-upload" name="upload" type="file" accept="image/*" />
           </label>
 
           <img class="photo-preview" id="photo-preview" alt="" />
@@ -94,8 +115,13 @@
         </form>
 
         <div class="export-box" id="export-box" hidden>
-          <h2>Export data</h2>
-          <p>Replace the contents of <code>window.PEAK_IDEAS = [...]</code> in <code>data/ideas.js</code> with this block.</p>
+          <div class="panel-tabs" role="tablist" aria-label="Panel tabs">
+            <button class="tab-button is-active" id="edit-tab" type="button">Edit pin</button>
+            <button class="tab-button" id="data-tab" type="button">Data export</button>
+          </div>
+          <h2>Copy all ideas</h2>
+          <p>Copy this whole block into <code>data/ideas.js</code>. It contains every current pin, not just the selected one.</p>
+          <button id="copy-export" type="button">Copy all data</button>
           <textarea id="export-output" rows="10" readonly></textarea>
         </div>
       </section>

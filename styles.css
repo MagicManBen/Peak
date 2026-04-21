@@ -369,6 +369,33 @@ body {
   padding-top: 1rem;
 }
 
+.panel-tabs {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: rgba(18, 61, 44, 0.08);
+}
+
+.panel-tabs .tab-button {
+  flex: 1;
+  min-height: 2rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--forest);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 0.35rem 0.65rem;
+}
+
+.panel-tabs .tab-button.is-active {
+  background: var(--forest);
+  color: var(--paper);
+}
+
 .export-box p {
   margin: 0;
   color: rgba(22, 32, 22, 0.68);
