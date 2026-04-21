@@ -51,6 +51,8 @@ function createPhotoIcon(photo) {
 }
 
 const map = L.map("map", {
+  fadeAnimation: false,
+  preferCanvas: true,
   zoomControl: false,
   scrollWheelZoom: true,
 });
@@ -58,14 +60,20 @@ const map = L.map("map", {
 L.control.zoom({ position: "bottomright" }).addTo(map);
 
 const street = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  keepBuffer: 6,
   maxZoom: 20,
+  updateWhenIdle: false,
+  updateWhenZooming: false,
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
 
 const satellite = L.tileLayer(
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   {
+    keepBuffer: 6,
     maxZoom: 20,
+    updateWhenIdle: false,
+    updateWhenZooming: false,
     attribution:
       "Tiles &copy; Esri, Maxar, Earthstar Geographics, and the GIS User Community",
   }
@@ -111,5 +119,16 @@ function fitMap() {
 photoCount.textContent = `${photos.length} GPS photos`;
 fitButton.addEventListener("click", fitMap);
 
+function settleMap() {
+  map.invalidateSize(false);
+  fitMap();
+}
+
 fitMap();
-requestAnimationFrame(() => map.invalidateSize());
+[0, 100, 350, 900, 1800].forEach((delay) => {
+  setTimeout(settleMap, delay);
+});
+
+window.addEventListener("load", settleMap);
+window.addEventListener("resize", settleMap);
+window.addEventListener("orientationchange", () => setTimeout(settleMap, 250));
